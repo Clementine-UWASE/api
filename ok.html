@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>This is my form</h2>
+    <form class="form" action="trial.js"  autocomplete="off">
+        <input type="text" name="username" placeholder="username"> <br><br>
+        <input type="password" name="password" placeholder="password"> <br><br>
+        <input type="checkbox"> <br><br>
+        <button type="submit" class="btn">submit</button>
+    </form>
+    <script>
+    const formE = document.querySelector('.form');
+    formE.addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(formE);
+        const data = new URLSearchParams(formData);
+        fetch('https://reqres.in/api/users',{
+            method: 'POST',
+            headers: {
+                'content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: data
+    })
+    .then(res => res.json())
+    .then(data=>console.log(data))
+    .then(error=>console.log(error));
+});
+</script>
+</body>
+</html>

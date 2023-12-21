@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input type="file"id="file"accept=".jpg"multiple></input><br>
+        <input type="text"id="comments"placeholder="File comments"><br>
+        <button type="submit">Upload file</button>
+    </form>
+    <Script>
+      document.getElementById('form').addEventListener('submit,function(e)'{
+        e.PreventDefault();
+        const userFile = document.getElementById('file').files[0];
+        const userComments = document.getElementById('comments').value;
+        const formData = new FormData();
+        formData.append('user-file',userFile, 'user-file.jpg');
+        formData.append('user-comments' , usercomments);
+        fetch('https://httpbin.org/post',{
+            method:"POST",
+            body: formData,
+        })
+        .then(res => res.json())
+        .then(data =>console.log(data))
+        .catch(err => console.log(err))
+      });
+    </Script>
+</body>
+</html>

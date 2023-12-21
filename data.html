@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:antiquewhite">
+    <h1>List of post titles:</h1>
+    <ul>
+
+    </ul>
+    <script>
+        const listEl= document.querySelector('ul');
+        fetch('./data1.json')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(post => {
+                listEl.insertAdjacentHTML('beforeend',  `<li>${post.fruit}</li>`);
+                listEl.insertAdjacentHTML('beforeend',  `<li>${post.color}</li>`);
+                listEl.insertAdjacentHTML('beforeend',  `<li>${post.size}</li>`);
+            });
+        });
+    </script>
+    
+</body>
+</html>
